@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://brdmiehw578oc"]
+
+[ext_resource type="Script" uid="uid://dubhu280jm82x" path="res://world.gd" id="1_aqk2v"]
+[ext_resource type="Texture2D" uid="uid://db40ai4h5r6oe" path="res://assets/scenario.png" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://c3ks1g4vj855x" path="res://parallax_background.gd" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://b0s4db45wx556" path="res://player.tscn" id="3_tlwt5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_siqxr"]
+size = Vector2(1341, 14)
+
+[node name="World" type="Node2D" unique_id=666478558]
+script = ExtResource("1_aqk2v")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1921010657]
+script = ExtResource("1_fj7yv")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=284552917]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1109076640]
+scale = Vector2(0.40909094, 0.42187497)
+texture = ExtResource("1_f3sb7")
+centered = false
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=213285240]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=275185354]
+position = Vector2(667.5, 508)
+shape = SubResource("RectangleShape2D_siqxr")
+
+[node name="Player" parent="." unique_id=1221107684 instance=ExtResource("3_tlwt5")]
+position = Vector2(186, 400)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1019697941]
+wait_time = 2.0
+autostart = true
+
+[node name="SpawnFloor" type="Marker2D" parent="." unique_id=104250000]
+position = Vector2(1208, 426)
+
+[node name="SpawnSky" type="Marker2D" parent="." unique_id=647895857]
+position = Vector2(1214, 294)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1450885698]
+offset = Vector2(20, 20)
+transform = Transform2D(1, 0, 0, 1, 20, 20)
+
+[node name="TimeLabel" type="Label" parent="UI" unique_id=695304572]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "Tempo: 0s"
+
+[node name="GameOverScreen" type="Control" parent="UI" unique_id=622504866]
+layout_mode = 3
+anchor_right = 0.9710001
+anchor_bottom = 0.94500005
+offset_left = -18.0
+offset_top = -24.0
+offset_right = 9.407959
+offset_bottom = 8.639954
+
+[node name="ColorRect" type="ColorRect" parent="UI/GameOverScreen" unique_id=282134443]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.86100006
+anchor_top = -0.20400001
+anchor_right = 27.7
+anchor_bottom = 15.300001
+offset_left = -1006.70605
+offset_top = 118.58
+offset_right = -30577.201
+offset_bottom = -9200.501
+color = Color(0.0067007933, 0.033248775, 0.08646547, 0.6431373)
+
+[node name="TitleLabel" type="Label" parent="UI/GameOverScreen" unique_id=728933413]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.437
+anchor_top = 0.409
+anchor_right = 0.61600006
+anchor_bottom = 0.485
+offset_left = -5.802002
+offset_top = 0.19500732
+offset_right = 5.063965
+offset_bottom = 0.1749878
+theme_override_font_sizes/font_size = 35
+text = "FIM DE JOGO"
+
+[node name="RecordLabel" type="Label" parent="UI/GameOverScreen" unique_id=826426474]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42800003
+anchor_top = 0.48800004
+anchor_right = 0.62200004
+anchor_bottom = 0.52400005
+offset_left = 3.511963
+offset_top = 1.2399902
+offset_right = 3.1879272
+offset_bottom = 5.0199585
+text = "Você sobreviveu: 0 segundos"
+
+[node name="ResetBtn" type="Button" parent="UI/GameOverScreen" unique_id=1439882006]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 360.0
+offset_right = 692.0
+offset_bottom = 391.0
+text = "JOGAR NOVAMENTE"
+
+[node name="ExitBtn" type="Button" parent="UI/GameOverScreen" unique_id=2060238587]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 406.0
+offset_right = 695.0
+offset_bottom = 438.0
+text = "SAIR DO JOGO"

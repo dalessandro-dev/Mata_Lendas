@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c6aomaay75v14"]
+
+[ext_resource type="Texture2D" uid="uid://s2250l1w4oei" path="res://assets/hairy_leg.png" id="1_hbri6"]
+[ext_resource type="Script" uid="uid://bl60dcwxeqfyr" path="res://hairy_leg.gd" id="1_p6ng0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hwwo4"]
+radius = 55.0
+height = 184.0
+
+[node name="HairyLeg" type="Area2D" unique_id=827166454 groups=["monster"]]
+script = ExtResource("1_p6ng0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=826036760]
+scale = Vector2(0.44793206, 0.47086737)
+texture = ExtResource("1_hbri6")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1040348656]
+shape = SubResource("CapsuleShape2D_hwwo4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1436186830 groups=["monster"]]
+position = Vector2(-63, -77)
+rect = Rect2(-10, -10, 146, 174)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

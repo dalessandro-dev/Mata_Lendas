@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b0s4db45wx556"]
+
+[ext_resource type="Script" uid="uid://4raw5namwjgl" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://ch7laoaewr07b" path="res://assets/main_lower.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://bd6346wnbcxf7" path="res://assets/main_character.png" id="2_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(0, 0, 225, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(225, 0, 225, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(450, 0, 225, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_30xnt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqtel")
+}],
+"loop": 1,
+"name": &"lower",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2hx4"]
+radius = 56.0
+height = 176.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_siqxr"]
+size = Vector2(191, 72.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=1221107684 groups=["player"]]
+script = ExtResource("1_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732543121]
+scale = Vector2(0.853918, 0.7691396)
+sprite_frames = SubResource("SpriteFrames_30xnt")
+animation = &"run"
+autoplay = "run"
+
+[node name="CollisionFoot" type="CollisionShape2D" parent="." unique_id=1191363989]
+shape = SubResource("CapsuleShape2D_g2hx4")
+
+[node name="CollisionLower" type="CollisionShape2D" parent="." unique_id=1189843263]
+position = Vector2(44, 47)
+shape = SubResource("RectangleShape2D_siqxr")
+disabled = true

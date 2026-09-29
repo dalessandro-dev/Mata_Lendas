@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://copcndct12ijx"]
+
+[ext_resource type="Script" uid="uid://3i6wuruiml0t" path="res://werewolf.gd" id="1_rdsq3"]
+[ext_resource type="Texture2D" uid="uid://chwfwtb1i0nh0" path="res://assets/werewolf.png" id="1_un2d8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdsq3"]
+atlas = ExtResource("1_un2d8")
+region = Rect2(0, 0, 225, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt4sd"]
+atlas = ExtResource("1_un2d8")
+region = Rect2(225, 0, 225, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv8pq"]
+atlas = ExtResource("1_un2d8")
+region = Rect2(450, 0, 225, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_siqxr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdsq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt4sd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv8pq")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_na1uc"]
+radius = 54.0
+height = 232.0
+
+[node name="Werewolf" type="Area2D" unique_id=1013104949 groups=["monster"]]
+script = ExtResource("1_rdsq3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=320018913 groups=["monster"]]
+scale = Vector2(1.0022222, 0.9607046)
+sprite_frames = SubResource("SpriteFrames_siqxr")
+animation = &"run"
+autoplay = "run"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=409358397]
+position = Vector2(-20, -1)
+shape = SubResource("CapsuleShape2D_na1uc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1053741656]
+position = Vector2(-44, -77)
+rect = Rect2(-36, -10, 151, 185)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

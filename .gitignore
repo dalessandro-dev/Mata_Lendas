@@ -1,0 +1,9 @@
+.godot/
+build/
+build_web/
+export/
+*.zip
+*.pck
+*.wasm
+*.side.wasm
+.import/
